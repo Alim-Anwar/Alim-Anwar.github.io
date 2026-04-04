@@ -1,17 +1,542 @@
----
-layout: default
-title: "Home"
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alim Anwar | Computer Engineering Student</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-{% if site.show_excerpts %}
-  {% for post in site.posts %}
-    <article>
-      {% include meta.html post=post %}
-      {{ post.excerpt }}
-      <footer class="button"><a href="{{ post.url | relative_url }}">read more</a></footer>
-    </article>
-  {% endfor %}
-{% else %}
-  {% capture source %}{% include_relative archive.html title="Posts" %}{% endcapture %}
-  {{ source | split: "---" | last }}
-{% endif %}
+  :root {
+    --bg: #0b0d14;
+    --bg2: #11131d;
+    --bg3: #181b27;
+    --pink: #ff3d6e;
+    --pink2: #ff6b91;
+    --text: #f0f2ff;
+    --muted: #7b80a0;
+    --border: rgba(255,255,255,0.06);
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'Outfit', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 5%;
+    background: rgba(11,13,20,0.85);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-head);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--pink);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--text);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .nav-links a.active {
+    color: var(--pink);
+    border-bottom: 2px solid var(--pink);
+    border-radius: 6px 6px 0 0;
+  }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 5% 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #home::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,61,110,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-greeting {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: var(--font-head);
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.4s;
+  }
+
+  .hero-title span { color: var(--pink); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.6s;
+  }
+
+  .hero-sub span {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.8s;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: var(--pink);
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 30px rgba(255,61,110,0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 45px rgba(255,61,110,0.5);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.3);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 5%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 1rem;
+  }
+
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 20px;
+    background: var(--pink);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: var(--font-head);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    line-height: 1.15;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    border-top: 1px solid var(--border);
+  }
+
+  .about-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    font-size: 1.05rem;
+    color: rgba(240,242,255,0.85);
+    line-height: 1.9;
+  }
+
+  .about-card p { margin-bottom: 1rem; }
+  .about-card p:last-child { margin-bottom: 0; }
+  .about-card strong { color: var(--pink); font-weight: 600; }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1.5rem;
+  }
+
+  .skill-tag {
+    padding: 6px 16px;
+    background: rgba(255,61,110,0.1);
+    border: 1px solid rgba(255,61,110,0.2);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--pink2);
+  }
+
+  /* ── BLOG GRID ── */
+  #blog {
+    border-top: 1px solid var(--border);
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .blog-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,61,110,0.3);
+    box-shadow: 0 12px 40px rgba(255,61,110,0.08);
+  }
+
+  .blog-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(255,61,110,0.12);
+    border: 1px solid rgba(255,61,110,0.2);
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 1rem;
+    width: fit-content;
+  }
+
+  .blog-card h3 {
+    font-family: var(--font-head);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .blog-card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .blog-card-footer {
+    margin-top: 1.25rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .blog-card-footer span { color: var(--pink2); font-size: 1rem; }
+
+  /* ── CONTACT ── */
+  #contact {
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  #contact .section-tag { justify-content: center; }
+  #contact .section-tag::before { display: none; }
+
+  .contact-desc {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--pink);
+    color: var(--pink);
+    background: rgba(255,61,110,0.06);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 2rem 5%;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  footer span { color: var(--pink); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav { padding: 1rem 4%; }
+    .nav-links a { padding: 5px 10px; font-size: 0.82rem; }
+    section { padding: 4rem 4%; }
+    .blog-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Alim Anwar</a>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <p class="hero-greeting">👋 Welcome to my portfolio</p>
+  <h1 class="hero-title">Hello, I am<br><span>Alim Anwar</span></h1>
+  <p class="hero-sub">
+    <span>Computer Engineering Student</span> &nbsp;|&nbsp; Web Developer
+  </p>
+  <div class="hero-btns">
+    <a href="#blog" class="btn-primary">Read My Blog →</a>
+    <a href="#about" class="btn-secondary">About Me</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-tag">About Me</p>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="about-card">
+    <p>My name is <strong>Alim Anwar</strong>, and I am a Computer Engineering student. I am learning web development and improving my skills day by day.</p>
+    <p>I love building things for the web and exploring new technologies. This blog is where I share my journey, projects, and everything I learn along the way.</p>
+    <p>I believe in learning by doing — every project teaches me something new.</p>
+    <div class="skills-grid">
+      <span class="skill-tag">HTML & CSS</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">Jekyll</span>
+      <span class="skill-tag">GitHub Pages</span>
+      <span class="skill-tag">Web Development</span>
+      <span class="skill-tag">Programming</span>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <p class="section-tag">Blog</p>
+  <h2 class="section-title">My Blog Posts</h2>
+  <div class="blog-grid">
+
+    <a href="/2026-04-04-my-first-post" class="blog-card">
+      <span class="blog-tag">Jekyll</span>
+      <h3>My First Blog Post</h3>
+      <p>Welcome to my blog! This is my first post on my GitHub Pages website. I have successfully set up my site using Jekyll.</p>
+      <div class="blog-card-footer">
+        <time>April 04, 2026</time>
+        <span>→</span>
+      </div>
+    </a>
+
+    <a href="/welcome-to-jekyll" class="blog-card">
+      <span class="blog-tag">Tutorial</span>
+      <h3>Welcome to Jekyll</h3>
+      <p>You'll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes.</p>
+      <div class="blog-card-footer">
+        <time>March 01, 2017</time>
+        <span>→</span>
+      </div>
+    </a>
+
+    <a href="/markdown-examples" class="blog-card">
+      <span class="blog-tag">Markdown</span>
+      <h3>Markdown Examples</h3>
+      <p>A showcase of all the Markdown syntax you can use in your Jekyll posts — headings, lists, code blocks, images and more.</p>
+      <div class="blog-card-footer">
+        <time>February 01, 2017</time>
+        <span>→</span>
+      </div>
+    </a>
+
+    <a href="/advanced-examples" class="blog-card">
+      <span class="blog-tag">Advanced</span>
+      <h3>Advanced Examples</h3>
+      <p>More advanced Jekyll features including custom layouts, includes, data files, and deployment tips for GitHub Pages.</p>
+      <div class="blog-card-footer">
+        <time>January 01, 2017</time>
+        <span>→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-tag">Contact</p>
+  <h2 class="section-title">Get In Touch</h2>
+  <p class="contact-desc">Have a question or want to connect? Feel free to reach out through any of these platforms.</p>
+  <div class="contact-links">
+    <a href="mailto:your@email.com" class="contact-link">✉ Email Me</a>
+    <a href="https://github.com/Alim-Anwar" class="contact-link">⌥ GitHub</a>
+    <a href="#" class="contact-link">in LinkedIn</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built with ❤ by <span>Alim Anwar</span> · Hosted on GitHub Pages</p>
+</footer>
+
+<script>
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
