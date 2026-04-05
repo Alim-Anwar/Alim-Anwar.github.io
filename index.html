@@ -143,8 +143,9 @@
       blink-caret 0.75s step-end infinite 2.1s;
   }
 
+  /* Fixed clipping: increased to 11.5ch to ensure 'r' has space */
   @keyframes typing-hello { from { width: 0 } to { width: 11ch; } }
-  @keyframes typing-name { from { width: 0 } to { width: 10ch; } }
+  @keyframes typing-name { from { width: 0 } to { width: 11ch; } } 
   @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--teal); } }
   @keyframes hide-cursor { to { border-right-color: transparent; } }
 
@@ -389,8 +390,7 @@
 <section id="blog">
   <span class="section-tag">// My Blog Posts</span>
   <h2 class="blog-header">Latest Insights</h2>
-  <div class="blog-grid" id="blogGrid">
-    </div>
+  <div class="blog-grid" id="blogGrid"></div>
 </section>
 
 <section id="contact">
@@ -515,7 +515,6 @@ const posts = [
   }
 ];
 
-// Initialize Blog Grid
 const blogGrid = document.getElementById('blogGrid');
 posts.forEach((p, i) => {
   const card = document.createElement('div');
