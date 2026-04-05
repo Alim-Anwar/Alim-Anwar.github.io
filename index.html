@@ -1,4 +1,573 @@
-<div class="contact-grid">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alim Anwar | Computer Engineering Student</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #161616;
+    --border: #1e1e1e;
+    --teal: #00c9a7;
+    --teal-dim: rgba(0,201,167,0.12);
+    --teal-glow: rgba(0,201,167,0.25);
+    --white: #f0f0f0;
+    --muted: #6b6b6b;
+    --text: #c8c8c8;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--teal);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--teal); }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 48px; max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  /* ── HERO & TYPING ANIMATION ── */
+  #home {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+    padding-top: 120px;
+    max-width: 100%;
+    padding-left: 8vw; padding-right: 8vw;
+    position: relative;
+    overflow: hidden;
+  }
+  #home::before {
+    content: '';
+    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, var(--teal-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .typing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-height: 160px;
+  }
+
+  .hero-greeting {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 20px;
+    opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+  }
+
+  .hero-hello {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    color: var(--white);
+    line-height: 1.05;
+    overflow: hidden; 
+    white-space: nowrap; 
+    border-right: 3px solid var(--teal);
+    width: 0;
+    /* Speed increased to 1s */
+    animation: 
+      typing-hello 1s steps(11, end) 0.5s forwards,
+      blink-caret 0.75s step-end infinite,
+      hide-cursor 0s 1.5s forwards; 
+  }
+
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 7rem);
+    color: var(--teal);
+    line-height: 1.0;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    border-right: 3px solid transparent;
+    /* Speed increased to 1s; starts at 1.5s */
+    animation: 
+      typing-name 1s steps(10, end) 1.5s forwards,
+      blink-caret 0.75s step-end infinite 1.5s,
+      hide-cursor 0s 2.5s forwards; 
+  }
+
+  @keyframes typing-hello { from { width: 0 } to { width: 11ch; } }
+  @keyframes typing-name { from { width: 0 } to { width: 11ch; } } 
+  @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--teal); } }
+  @keyframes hide-cursor { to { border-right-color: transparent; } }
+
+  .hero-sub {
+    margin-top: 22px;
+    font-size: 0.88rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    opacity: 0; animation: fadeUp 0.6s 2.8s forwards;
+  }
+  .hero-sub span { color: var(--text); margin: 0 10px; }
+  .hero-btns {
+    display: flex; gap: 14px; margin-top: 36px; justify-content: center;
+    opacity: 0; animation: fadeUp 0.6s 3s forwards;
+  }
+
+  .btn-primary {
+    background: var(--teal); color: #000;
+    padding: 12px 28px; border-radius: 50px;
+    font-family: var(--font-body); font-size: 0.83rem; font-weight: 600;
+    text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid var(--border); color: var(--text);
+    padding: 12px 28px; border-radius: 50px;
+    font-family: var(--font-body); font-size: 0.83rem; font-weight: 500;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* ── ABOUT ── */
+  #about { border-top: 1px solid var(--border); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: start; margin-top: 10px;
+  }
+  .about-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--white); line-height: 1.15; margin-bottom: 20px;
+  }
+  .about-title em { color: var(--teal); font-style: italic; }
+  .about-text { font-size: 0.88rem; color: var(--text); margin-bottom: 14px; }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-top: 28px;
+  }
+  .stat-card {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px;
+  }
+  .stat-num {
+    font-family: var(--font-display); font-size: 1.8rem;
+    color: var(--teal); line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .skill-tag {
+    font-family: var(--font-mono); font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    background: var(--teal-dim); color: var(--teal);
+    padding: 5px 12px; border-radius: 4px;
+    border: 1px solid rgba(0,201,167,0.2);
+  }
+
+  /* ── BLOG ── */
+  #blog { border-top: 1px solid var(--border); }
+  .blog-header {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--white); margin-bottom: 48px;
+  }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .blog-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px;
+    transition: border-color 0.25s, transform 0.25s;
+    cursor: pointer; position: relative; overflow: hidden;
+  }
+  .blog-card:hover {
+    border-color: var(--teal);
+    transform: translateY(-4px);
+  }
+  .blog-card.featured {
+    grid-column: span 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  }
+  .blog-img {
+    width: 100%; height: 180px; object-fit: cover;
+    border-radius: 8px; margin-bottom: 18px;
+    background: var(--surface2);
+  }
+  .blog-card.featured .blog-img { height: 100%; margin-bottom: 0; }
+  .blog-cat {
+    font-family: var(--font-mono);
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--teal); background: var(--teal-dim);
+    padding: 3px 10px; border-radius: 4px;
+    display: inline-block; margin-bottom: 14px;
+  }
+  .blog-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem; color: var(--white);
+    line-height: 1.3; margin-bottom: 10px;
+  }
+  .blog-excerpt { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+  .blog-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 18px;
+  }
+  .blog-date { font-size: 0.75rem; color: var(--muted); font-family: var(--font-mono); }
+  .blog-arrow { color: var(--teal); font-size: 1rem; }
+
+  /* ── CONTACT ── */
+  #contact { border-top: 1px solid var(--border); text-align: center; }
+  .contact-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    color: var(--white); margin-bottom: 12px;
+  }
+  .contact-sub { font-size: 0.88rem; color: var(--muted); max-width: 400px; margin: 0 auto 48px; }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 16px; max-width: 640px; margin: 0 auto;
+  }
+  .contact-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 20px;
+    text-decoration: none; color: inherit;
+    transition: border-color 0.2s, background 0.2s;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .contact-card:hover { border-color: var(--teal); background: var(--teal-dim); }
+  .contact-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--teal-dim); border: 1px solid rgba(0,201,167,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 2px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-value { font-size: 0.82rem; color: var(--white); font-weight: 500; word-break: break-all; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+    z-index: 200; overflow-y: auto;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; max-width: 760px; width: 90%;
+    margin: 60px auto; padding: 48px;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute; top: 20px; right: 24px;
+    background: none; border: none; color: var(--muted);
+    font-size: 1.5rem; cursor: pointer;
+  }
+  .modal-close:hover { color: var(--teal); }
+  .modal-img {
+    width: 100%; height: 280px; object-fit: cover;
+    border-radius: 12px; margin-bottom: 28px;
+  }
+  .modal-title { font-family: var(--font-display); font-size: 2rem; color: var(--white); line-height: 1.2; margin: 14px 0 8px; }
+  .modal-date { font-size: 0.75rem; color: var(--muted); font-family: var(--font-mono); margin-bottom: 28px; }
+  .modal-body { font-size: 0.88rem; color: var(--text); line-height: 1.85; }
+  .modal-body p { margin-bottom: 14px; }
+  .modal-body h3 { font-family: var(--font-display); color: var(--white); margin: 22px 0 10px; font-size: 1.25rem; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    section { padding: 70px 24px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .blog-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .modal { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">Alim Anwar</a>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <p class="hero-greeting">👋 Welcome to my portfolio</p>
+  <div class="typing-container">
+    <h1 class="hero-hello">Hello, I am</h1>
+    <h2 class="hero-name">Alim Anwar</h2>
+  </div>
+  <p class="hero-sub">Computer Engineering Student <span>|</span> Web Developer</p>
+  <div class="hero-btns">
+    <a href="#blog" class="btn-primary">Read My Blog →</a>
+    <a href="#about" class="btn-outline">About Me</a>
+  </div>
+</section>
+
+<section id="about">
+  <span class="section-tag">// About me</span>
+  <div class="about-grid">
+    <div>
+      <h2 class="about-title">Engineering student,<br><em>passionate learner.</em></h2>
+      <p class="about-text">I'm a Computer Engineering student at UET Faisalabad Campus, navigating the rewarding challenges of university life — from hostel experiences to hands-on programming projects.</p>
+      <div class="skills-list">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Machine Learning</span>
+        <span class="skill-tag">Web Dev</span>
+        <span class="skill-tag">HTML/CSS</span>
+        <span class="skill-tag">GitHub Pages</span>
+      </div>
+    </div>
+    <div>
+      <div class="about-stats">
+        <div class="stat-card"><div class="stat-num">1st</div><div class="stat-label">Year at UET</div></div>
+        <div class="stat-card"><div class="stat-num">72%</div><div class="stat-label">Inter Score</div></div>
+        <div class="stat-card"><div class="stat-num">ML</div><div class="stat-label">Core Interest</div></div>
+        <div class="stat-card"><div class="stat-num">CE</div><div class="stat-label">Degree</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="blog">
+  <span class="section-tag">// My Blog Posts</span>
+  <h2 class="blog-header">Latest Insights</h2>
+  <div class="blog-grid" id="blogGrid"></div>
+</section>
+
+<section id="contact">
+  <span class="section-tag">// Contact</span>
+  <h2 class="contact-title">Get In Touch</h2>
+  <div class="contact-grid">
+    <a href="mailto:alimanwar@example.com" class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div><div class="contact-label">Email</div><div class="contact-value">alimanwar@example.com</div></div>
+    </a>
+    <a href="tel:+923021784064" class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div><div class="contact-label">Phone</div><div class="contact-value">+92 302 178 4064</div></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  Built with ♥ by Alim Anwar · Hosted on GitHub Pages
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnBg(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <img class="modal-img" id="modalImg" src="" alt="">
+    <span class="blog-cat" id="modalCat"></span>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <p class="modal-date" id="modalDate"></p>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const posts = [
+  {
+    cat: "University Life",
+    title: "My First Experience at University: Challenges, Growth & Learning",
+    date: "April 04, 2026",
+    excerpt: "After passing intermediate with 72%, I stepped into UET Faisalabad — a crash course in resilience.",
+    img: "https://images.unsplash.com/photo-1562774053-701939374585?w=900&q=80",
+    body: `<h3>Arriving at Campus</h3><p>The university is located in a remote area surrounded by agricultural land. Within a few days, I began to adjust to my new environment.</p><h3>Academic Environment</h3><p>The departmental labs are well-equipped. At the end of my first semester, I realized university is about discovering who you are when no one is watching.</p>`
+  },
+  {
+    cat: "Hostel Life",
+    title: "Life as a Hostellite: The Real University Curriculum",
+    date: "March 20, 2026",
+    excerpt: "Hostel life threw me into the deep end — food, water, and character building.",
+    img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=900&q=80",
+    body: `<p>Moving into the campus hostel was the moment university life truly began. It came with challenges: mess food, water quality issues, and shared spaces.</p><p>Despite the difficulties, hostel life taught me how to manage limited resources and build patience.</p>`
+  },
+  {
+    cat: "Student Project",
+    title: "My First ML Project: Training a Machine Learning Model in Semester 1",
+    date: "March 05, 2026",
+    excerpt: "From learning variables in Python to presenting a machine learning model at a department exhibition.",
+    img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&q=80",
+    body: `<p>During my first semester, I studied Python. After the midterms, our professor introduced us to Machine Learning.</p><p>We presented our work at a department exhibition. Explaining my model to seniors and faculty was a massive personal milestone.</p>`
+  },
+  {
+    cat: "Academic Life",
+    title: "Surviving Midterms: Study Strategies That Actually Worked",
+    date: "February 18, 2026",
+    excerpt: "Group study sessions, late nights, and a lot of chai — here's how I navigated exams.",
+    img: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=900&q=80",
+    body: `<p>University exams require a wider scope of understanding. I participated in group study sessions, which helped me fill gaps in my knowledge by explaining concepts out loud.</p>`
+  },
+  {
+    cat: "Campus Life",
+    title: "UET Faisalabad: A Campus in the Middle of Nowhere",
+    date: "February 01, 2026",
+    excerpt: "Surrounded by fields, UET Faisalabad Campus surprised me with its organized community.",
+    img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=900&q=80",
+    body: `<p>The remoteness of UET Faisalabad actually has an advantage: fewer distractions. It creates a focused bubble that is excellent for academic growth.</p>`
+  },
+  {
+    cat: "Semester 2",
+    title: "Second Semester Begins: A Fresh Start with Higher Stakes",
+    date: "January 20, 2026",
+    excerpt: "Returning for the second semester felt different. I knew the routines and the expectations.",
+    img: "https://images.unsplash.com/photo-1588072432836-e10032774350?w=900&q=80",
+    body: `<p>Returning for the second semester felt different. The subjects like data structures and circuits required more focus, but I felt more strategic with my time.</p>`
+  },
+  {
+    cat: "Online Classes",
+    title: "When War Moved Our Classroom Online",
+    date: "February 10, 2026",
+    excerpt: "As tensions escalated, our university shifted to online classes. Virtual learning was its own challenge.",
+    img: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=900&q=80",
+    body: `<p>Due to regional tensions, the university shifted to online classes. Studying from a hostel room revealed new challenges, like network issues and the absence of lab work.</p>`
+  },
+  {
+    cat: "Ramadan & Eid",
+    title: "Ramadan in the Hostel: Sehri, Iftaar, and Brotherhood",
+    date: "March 01, 2026",
+    excerpt: "Spending Ramadan away from home for the first time was emotional, but the hostel became family.",
+    img: "https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=900&q=80",
+    body: `<p>Observing Ramadan away from home was emotional. Sharing sehri and breaking fast together made the academic pressure much more manageable.</p>`
+  },
+  {
+    cat: "Eid",
+    title: "Eid ul-Fitr During Online Class Holidays",
+    date: "March 10, 2026",
+    excerpt: "Eid at home felt like home, even as the world watched global tensions unfold.",
+    img: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=900&q=80",
+    body: `<p>Because of the online classes, I was able to return to Lahore for Eid. Celebrating at home recharged me after months of hostel routine.</p>`
+  },
+  {
+    cat: "Midterms S2",
+    title: "Second Semester Midterms: Harder Questions, Better Answers",
+    date: "March 25, 2026",
+    excerpt: "Semester two midterms hit differently. More complexity, but also more experience.",
+    img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=900&q=80",
+    body: `<p>Semester 2 midterms required deeper conceptual thinking. I focused on weak areas and structured my study sessions more deliberately.</p>`
+  },
+  {
+    cat: "Student Life",
+    title: "Balancing It All: Studies, Hostel, and Mental Health",
+    date: "April 01, 2026",
+    excerpt: "How I learned to balance academic pressure, hostel life, and still find time to breathe.",
+    img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=80",
+    body: `<p>University is a long road. Endurance is about finding small ways to recover — like walks around campus — so you can keep going.</p>`
+  }
+];
+
+const blogGrid = document.getElementById('blogGrid');
+posts.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = `blog-card ${i === 0 ? 'featured' : ''}`;
+  card.onclick = () => openModal(i);
+  card.innerHTML = `
+    ${i === 0 ? `<div><img class="blog-img" src="${p.img}"></div>` : `<img class="blog-img" src="${p.img}">`}
+    <div>
+      <span class="blog-cat">${p.cat}</span>
+      <h3 class="blog-title">${p.title}</h3>
+      <p class="blog-excerpt">${p.excerpt}</p>
+      <div class="blog-meta"><span class="blog-date">${p.date}</span><span class="blog-arrow">→</span></div>
+    </div>
+  `;
+  blogGrid.appendChild(card);
+});
+
+function openModal(i) {
+  const p = posts[i];
+  document.getElementById('modalImg').src = p.img;
+  document.getElementById('modalCat').textContent = p.cat;
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalDate').textContent = p.date;
+  document.getElementById('modalBody').innerHTML = p.body;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeOnBg(e) { if (e.target.classList.contains('modal-overlay')) closeModal(); }
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Scroll spy
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll', () => {
+  let current = "";
+  sections.forEach(s => { if (pageYOffset >= s.offsetTop - 150) current = s.getAttribute('id'); });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href').includes(current)) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html><div class="contact-grid">
   <a href="mailto:alimanwar409@gmail.com" class="contact-card">
     <div class="contact-icon">✉️</div>
     <div>
