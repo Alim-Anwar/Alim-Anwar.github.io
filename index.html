@@ -792,4 +792,78 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
-  
+<script>
+const posts = [
+  {
+    cat: "University Life",
+    title: "My First Experience at University",
+    date: "April 04, 2026",
+    img: "https://images.unsplash.com/photo-1562774053-701939374585?w=900&q=80",
+    body: `<p>This was my first experience at university. It taught me independence, confidence, and real-life problem solving.</p>
+           <h3>Conclusion</h3>
+           <p>University is not just about study, it's about growth.</p>`
+  },
+  {
+    cat: "Hostel Life",
+    title: "Life as a Hostellite",
+    date: "March 20, 2026",
+    img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=900&q=80",
+    body: `<p>Hostel life was full of challenges like food, water, and routine.</p>
+           <h3>Conclusion</h3>
+           <p>It made me stronger and more independent.</p>`
+  },
+  {
+    cat: "Student Project",
+    title: "My First ML Project",
+    date: "March 05, 2026",
+    img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&q=80",
+    body: `<p>I learned Python and created my first machine learning model.</p>
+           <h3>Conclusion</h3>
+           <p>It was my first step into AI and real development.</p>`
+  },
+  {
+    cat: "Academic Life",
+    title: "Surviving Midterms",
+    date: "February 18, 2026",
+    img: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=900&q=80",
+    body: `<p>Midterms were tough but group study helped a lot.</p>
+           <h3>Conclusion</h3>
+           <p>Consistency is more important than last-night study.</p>`
+  }
+];
+
+// OPEN MODAL
+function openModal(i) {
+  if (!posts[i]) return;
+
+  const p = posts[i];
+
+  document.getElementById('modalImg').src = p.img || "";
+  document.getElementById('modalCat').textContent = p.cat || "";
+  document.getElementById('modalTitle').textContent = p.title || "";
+  document.getElementById('modalDate').textContent = p.date || "";
+  document.getElementById('modalBody').innerHTML =
+    p.body || "<p>Content coming soon...</p>";
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+// CLOSE MODAL
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// CLOSE ON BACKGROUND CLICK
+function closeOnBg(e) {
+  if (e.target.id === "modalOverlay") {
+    closeModal();
+  }
+}
+
+// ESC KEY CLOSE
+document.addEventListener('keydown', function(e) {
+  if (e.key === "Escape") closeModal();
+});
+</script>
