@@ -5,22 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alim Anwar | Computer Engineering Student</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #050809;
-    --bg2: #0c1012;
-    --bg3: #111618;
-    --pink: #00d4cc;
-    --pink2: #00fffa;
-    --text: #f0fffe;
-    --muted: #5a8a88;
-    --border: rgba(0,212,204,0.08);
-    --font-head: 'Syne', sans-serif;
-    --font-body: 'Outfit', sans-serif;
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #161616;
+    --border: #1e1e1e;
+    --teal: #00c9a7;
+    --teal-dim: rgba(0,201,167,0.12);
+    --teal-glow: rgba(0,201,167,0.25);
+    --white: #f0f0f0;
+    --muted: #6b6b6b;
+    --text: #c8c8c8;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'Space Mono', monospace;
   }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
 
@@ -28,385 +31,292 @@
     background: var(--bg);
     color: var(--text);
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.7;
-    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* ── NAV ── */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 5%;
-    background: rgba(5,8,9,0.90);
-    backdrop-filter: blur(18px);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
-
   .nav-logo {
-    font-family: var(--font-head);
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--pink);
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--teal);
     text-decoration: none;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.01em;
   }
-
-  .nav-links {
-    display: flex;
-    gap: 0.25rem;
-    list-style: none;
-  }
-
+  .nav-links { display: flex; gap: 36px; list-style: none; }
   .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--muted);
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 6px 16px;
-    border-radius: 6px;
-    transition: color 0.2s, background 0.2s;
+    transition: color 0.2s;
   }
+  .nav-links a:hover, .nav-links a.active { color: var(--teal); }
 
-  .nav-links a:hover,
-  .nav-links a.active {
-    color: var(--text);
-    background: rgba(255,255,255,0.06);
-  }
-
-  .nav-links a.active {
-    color: var(--pink);
-    border-bottom: 2px solid var(--pink);
-    border-radius: 6px 6px 0 0;
+  /* ── SECTIONS ── */
+  section { padding: 100px 48px; max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 14px;
+    display: block;
   }
 
   /* ── HERO ── */
   #home {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 8rem 5% 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 120px;
+    max-width: 100%;
+    padding-left: 8vw; padding-right: 8vw;
     position: relative;
     overflow: hidden;
   }
-
   #home::before {
     content: '';
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0,212,204,0.10) 0%, transparent 70%);
+    position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, var(--teal-glow) 0%, transparent 70%);
     pointer-events: none;
   }
-
   .hero-greeting {
-    font-size: 1rem;
-    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--pink);
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.2s;
+    color: var(--teal);
+    margin-bottom: 20px;
+    opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
   }
-
-  .hero-title {
-    font-family: var(--font-head);
-    font-size: clamp(2.8rem, 8vw, 6rem);
-    font-weight: 800;
+  .hero-hello {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    color: var(--white);
     line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.4s;
+    opacity: 0; animation: fadeUp 0.6s 0.35s forwards;
   }
-
-  .hero-title span { color: var(--pink); }
-
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 7rem);
+    color: var(--teal);
+    line-height: 1.0;
+    opacity: 0; animation: fadeUp 0.6s 0.5s forwards;
+  }
   .hero-sub {
-    font-size: 1.1rem;
+    margin-top: 22px;
+    font-size: 0.88rem;
     color: var(--muted);
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.6s;
+    letter-spacing: 0.04em;
+    opacity: 0; animation: fadeUp 0.6s 0.65s forwards;
   }
-
-  .hero-sub span {
-    color: var(--text);
-    font-weight: 500;
-  }
-
+  .hero-sub span { color: var(--text); margin: 0 10px; }
   .hero-btns {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.8s;
+    display: flex; gap: 14px; margin-top: 36px;
+    opacity: 0; animation: fadeUp 0.6s 0.8s forwards;
   }
-
   .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 32px;
-    background: var(--pink);
-    color: white;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 30px rgba(0,212,204,0.25);
+    background: var(--teal); color: #000;
+    padding: 12px 28px; border-radius: 50px;
+    font-family: var(--font-body); font-size: 0.83rem; font-weight: 600;
+    text-decoration: none; transition: opacity 0.2s, transform 0.2s;
   }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 45px rgba(0,212,204,0.4);
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid var(--border); color: var(--text);
+    padding: 12px 28px; border-radius: 50px;
+    font-family: var(--font-body); font-size: 0.83rem; font-weight: 500;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
   }
-
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 32px;
-    background: transparent;
-    color: var(--text);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 50px;
-    font-weight: 500;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .btn-secondary:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.3);
-  }
-
-  /* ── SECTIONS ── */
-  section {
-    padding: 6rem 5%;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .section-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--pink);
-    margin-bottom: 1rem;
-  }
-
-  .section-tag::before {
-    content: '';
-    display: block;
-    width: 3px;
-    height: 20px;
-    background: var(--pink);
-    border-radius: 2px;
-  }
-
-  .section-title {
-    font-family: var(--font-head);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 3rem;
-    line-height: 1.15;
-  }
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
 
   /* ── ABOUT ── */
-  #about {
-    border-top: 1px solid var(--border);
+  #about { border-top: 1px solid var(--border); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: start; margin-top: 10px;
   }
-
-  .about-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2.5rem;
-    font-size: 1.05rem;
-    color: rgba(240,242,255,0.85);
-    line-height: 1.9;
+  .about-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--white); line-height: 1.15; margin-bottom: 20px;
   }
-
-  .about-card p { margin-bottom: 1rem; }
-  .about-card p:last-child { margin-bottom: 0; }
-  .about-card strong { color: var(--pink); font-weight: 600; }
-
-  .skills-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 1.5rem;
+  .about-title em { color: var(--teal); font-style: italic; }
+  .about-text { font-size: 0.88rem; color: var(--text); margin-bottom: 14px; }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-top: 28px;
   }
-
+  .stat-card {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px;
+  }
+  .stat-num {
+    font-family: var(--font-display); font-size: 1.8rem;
+    color: var(--teal); line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .skill-tag {
-    padding: 6px 16px;
-    background: rgba(0,212,204,0.08);
-    border: 1px solid rgba(0,212,204,0.2);
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--pink2);
+    font-family: var(--font-mono); font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    background: var(--teal-dim); color: var(--teal);
+    padding: 5px 12px; border-radius: 4px;
+    border: 1px solid rgba(0,201,167,0.2);
   }
 
-  /* ── BLOG GRID ── */
-  #blog {
-    border-top: 1px solid var(--border);
+  /* ── BLOG ── */
+  #blog { border-top: 1px solid var(--border); }
+  .blog-header {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--white); margin-bottom: 48px;
   }
-
   .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
   }
-
   .blog-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.75rem;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px;
+    transition: border-color 0.25s, transform 0.25s;
+    cursor: pointer; position: relative; overflow: hidden;
+    text-decoration: none; display: block; color: inherit;
   }
-
   .blog-card:hover {
+    border-color: var(--teal);
     transform: translateY(-4px);
-    border-color: rgba(0,212,204,0.35);
-    box-shadow: 0 12px 40px rgba(0,212,204,0.08);
   }
-
-  .blog-tag {
-    display: inline-block;
-    padding: 4px 12px;
-    background: rgba(0,212,204,0.08);
-    border: 1px solid rgba(0,212,204,0.18);
-    border-radius: 50px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--pink);
-    margin-bottom: 1rem;
-    width: fit-content;
+  .blog-card.featured {
+    grid-column: span 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
   }
-
-  .blog-card h3 {
-    font-family: var(--font-head);
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 0.75rem;
-    line-height: 1.3;
+  .blog-img {
+    width: 100%; height: 180px; object-fit: cover;
+    border-radius: 8px; margin-bottom: 18px;
+    background: var(--surface2);
   }
-
-  .blog-card p {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.7;
-    flex: 1;
+  .blog-card.featured .blog-img { height: 100%; margin-bottom: 0; }
+  .blog-cat {
+    font-family: var(--font-mono);
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--teal); background: var(--teal-dim);
+    padding: 3px 10px; border-radius: 4px;
+    display: inline-block; margin-bottom: 14px;
   }
-
-  .blog-card-footer {
-    margin-top: 1.25rem;
-    font-size: 0.8rem;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .blog-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem; color: var(--white);
+    line-height: 1.3; margin-bottom: 10px;
   }
-
-  .blog-card-footer span { color: var(--pink2); font-size: 1rem; }
+  .blog-excerpt { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+  .blog-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 18px;
+  }
+  .blog-date { font-size: 0.75rem; color: var(--muted); font-family: var(--font-mono); }
+  .blog-arrow { color: var(--teal); font-size: 1rem; }
 
   /* ── CONTACT ── */
-  #contact {
-    border-top: 1px solid var(--border);
-    text-align: center;
+  #contact { border-top: 1px solid var(--border); text-align: center; }
+  .contact-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    color: var(--white); margin-bottom: 12px;
   }
-
-  #contact .section-tag { justify-content: center; }
-  #contact .section-tag::before { display: none; }
-
-  .contact-desc {
-    color: var(--muted);
-    font-size: 1.05rem;
-    margin-bottom: 2.5rem;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
+  .contact-sub { font-size: 0.88rem; color: var(--muted); max-width: 400px; margin: 0 auto 48px; }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 16px; max-width: 640px; margin: 0 auto;
   }
-
-  .contact-links {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
+  .contact-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 20px;
+    text-decoration: none; color: inherit;
+    transition: border-color 0.2s, background 0.2s;
+    display: flex; align-items: center; gap: 14px;
   }
-
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 50px;
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: border-color 0.2s, background 0.2s, color 0.2s;
+  .contact-card:hover { border-color: var(--teal); background: var(--teal-dim); }
+  .contact-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--teal-dim); border: 1px solid rgba(0,201,167,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
   }
-
-  .contact-link:hover {
-    border-color: var(--pink);
-    color: var(--pink);
-    background: rgba(0,212,204,0.06);
-  }
+  .contact-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 2px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-value { font-size: 0.82rem; color: var(--white); font-weight: 500; word-break: break-all; }
 
   /* ── FOOTER ── */
   footer {
+    text-align: center; padding: 32px 24px;
     border-top: 1px solid var(--border);
-    text-align: center;
-    padding: 2rem 5%;
-    color: var(--muted);
-    font-size: 0.85rem;
+    font-size: 0.75rem; color: var(--muted);
+    font-family: var(--font-mono);
   }
+  footer a { color: var(--teal); text-decoration: none; }
 
-  footer span { color: var(--pink); }
+  /* ── BLOG POST MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+    z-index: 200; overflow-y: auto;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; max-width: 760px; width: 90%;
+    margin: 60px auto; padding: 48px;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute; top: 20px; right: 24px;
+    background: none; border: none; color: var(--muted);
+    font-size: 1.5rem; cursor: pointer; line-height: 1;
+  }
+  .modal-close:hover { color: var(--teal); }
+  .modal-img {
+    width: 100%; height: 280px; object-fit: cover;
+    border-radius: 12px; margin-bottom: 28px;
+  }
+  .modal-cat { /* reuse blog-cat */ }
+  .modal-title {
+    font-family: var(--font-display);
+    font-size: 2rem; color: var(--white);
+    line-height: 1.2; margin: 14px 0 8px;
+  }
+  .modal-date { font-size: 0.75rem; color: var(--muted); font-family: var(--font-mono); margin-bottom: 28px; }
+  .modal-body { font-size: 0.88rem; color: var(--text); line-height: 1.85; }
+  .modal-body p { margin-bottom: 14px; }
+  .modal-body h3 { font-family: var(--font-display); color: var(--white); margin: 22px 0 10px; font-size: 1.25rem; }
 
-  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    nav { padding: 1rem 4%; }
-    .nav-links a { padding: 5px 10px; font-size: 0.82rem; }
-    section { padding: 4rem 4%; }
-    .blog-grid { grid-template-columns: 1fr; }
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    section { padding: 70px 24px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .blog-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .blog-card.featured .blog-img { height: 200px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .modal { padding: 28px 20px; }
   }
 </style>
 </head>
@@ -426,78 +336,122 @@
 <!-- HERO -->
 <section id="home">
   <p class="hero-greeting">👋 Welcome to my portfolio</p>
-  <h1 class="hero-title">Hello, I am<br><span>Alim Anwar</span></h1>
-  <p class="hero-sub">
-    <span>Computer Engineering Student</span> &nbsp;|&nbsp; Web Developer
-  </p>
+  <h1 class="hero-hello">Hello, I am</h1>
+  <h2 class="hero-name">Alim Anwar</h2>
+  <p class="hero-sub">Computer Engineering Student <span>|</span> Web Developer</p>
   <div class="hero-btns">
     <a href="#blog" class="btn-primary">Read My Blog →</a>
-    <a href="#about" class="btn-secondary">About Me</a>
+    <a href="#about" class="btn-outline">About Me</a>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <p class="section-tag">About Me</p>
-  <h2 class="section-title">Who I Am</h2>
-  <div class="about-card">
-    <p>My name is <strong>Alim Anwar</strong>, and I am a Computer Engineering student. I am learning web development and improving my skills day by day.</p>
-    <p>I love building things for the web and exploring new technologies. This blog is where I share my journey, projects, and everything I learn along the way.</p>
-    <p>I believe in learning by doing — every project teaches me something new.</p>
-    <div class="skills-grid">
-      <span class="skill-tag">HTML & CSS</span>
-      <span class="skill-tag">JavaScript</span>
-      <span class="skill-tag">Jekyll</span>
-      <span class="skill-tag">GitHub Pages</span>
-      <span class="skill-tag">Web Development</span>
-      <span class="skill-tag">Programming</span>
+  <span class="section-tag">// About me</span>
+  <div class="about-grid">
+    <div>
+      <h2 class="about-title">Engineering student,<br><em>passionate learner.</em></h2>
+      <p class="about-text">I'm a Computer Engineering student at UET Faisalabad Campus, navigating the rewarding challenges of university life — from hostel experiences to hands-on programming projects.</p>
+      <p class="about-text">I'm passionate about web development and machine learning, and I love documenting my learning journey through writing.</p>
+      <div class="skills-list">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Machine Learning</span>
+        <span class="skill-tag">Web Dev</span>
+        <span class="skill-tag">HTML/CSS</span>
+        <span class="skill-tag">Jekyll</span>
+        <span class="skill-tag">GitHub Pages</span>
+      </div>
+    </div>
+    <div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">1st</div>
+          <div class="stat-label">Year at UET Faisalabad</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">72%</div>
+          <div class="stat-label">Intermediate Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">ML</div>
+          <div class="stat-label">First Semester Project</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">CS</div>
+          <div class="stat-label">Computer Engineering</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- BLOG -->
 <section id="blog">
-  <p class="section-tag">Blog</p>
-  <h2 class="section-title">My Blog Posts</h2>
+  <span class="section-tag">// My Blog Posts</span>
+  <h2 class="blog-header">My Blog Posts</h2>
   <div class="blog-grid">
 
-    <a href="/2026-04-04-my-first-post" class="blog-card">
-      <span class="blog-tag">Jekyll</span>
-      <h3>My First Blog Post</h3>
-      <p>Welcome to my blog! This is my first post on my GitHub Pages website. I have successfully set up my site using Jekyll.</p>
-      <div class="blog-card-footer">
-        <time>April 04, 2026</time>
-        <span>→</span>
+    <!-- POST 1 — FEATURED -->
+    <a class="blog-card featured" onclick="openModal(0); return false;" href="#">
+      <div>
+        <img class="blog-img" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700&q=80" alt="University entrance">
+      </div>
+      <div>
+        <span class="blog-cat">University Life</span>
+        <h3 class="blog-title">My First Experience at University: Challenges, Growth & Learning</h3>
+        <p class="blog-excerpt">After passing intermediate with 72%, I stepped into UET Faisalabad — a remote campus surrounded by agricultural land. What followed was a crash course in resilience, adaptation, and growth.</p>
+        <div class="blog-meta">
+          <span class="blog-date">April 04, 2026</span>
+          <span class="blog-arrow">→</span>
+        </div>
       </div>
     </a>
 
-    <a href="/welcome-to-jekyll" class="blog-card">
-      <span class="blog-tag">Tutorial</span>
-      <h3>Welcome to Jekyll</h3>
-      <p>You'll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes.</p>
-      <div class="blog-card-footer">
-        <time>March 01, 2017</time>
-        <span>→</span>
+    <!-- POST 2 -->
+    <a class="blog-card" onclick="openModal(1); return false;" href="#">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80" alt="Hostel life">
+      <span class="blog-cat">Hostel Life</span>
+      <h3 class="blog-title">Life as a Hostellite: The Real University Curriculum</h3>
+      <p class="blog-excerpt">Hostel life threw me into the deep end — food quality issues, water problems, shared washrooms, and security concerns. Here's how I turned chaos into character.</p>
+      <div class="blog-meta">
+        <span class="blog-date">March 20, 2026</span>
+        <span class="blog-arrow">→</span>
       </div>
     </a>
 
-    <a href="/markdown-examples" class="blog-card">
-      <span class="blog-tag">Markdown</span>
-      <h3>Markdown Examples</h3>
-      <p>A showcase of all the Markdown syntax you can use in your Jekyll posts — headings, lists, code blocks, images and more.</p>
-      <div class="blog-card-footer">
-        <time>February 01, 2017</time>
-        <span>→</span>
+    <!-- POST 3 -->
+    <a class="blog-card" onclick="openModal(2); return false;" href="#">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80" alt="Programming">
+      <span class="blog-cat">Student Project</span>
+      <h3 class="blog-title">My First ML Project: Training a Machine Learning Model in Semester 1</h3>
+      <p class="blog-excerpt">From learning variables and loops in Python to presenting a machine learning model at a department exhibition — here's how our first semester project unfolded.</p>
+      <div class="blog-meta">
+        <span class="blog-date">March 05, 2026</span>
+        <span class="blog-arrow">→</span>
       </div>
     </a>
 
-    <a href="/advanced-examples" class="blog-card">
-      <span class="blog-tag">Advanced</span>
-      <h3>Advanced Examples</h3>
-      <p>More advanced Jekyll features including custom layouts, includes, data files, and deployment tips for GitHub Pages.</p>
-      <div class="blog-card-footer">
-        <time>January 01, 2017</time>
-        <span>→</span>
+    <!-- POST 4 -->
+    <a class="blog-card" onclick="openModal(3); return false;" href="#">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&q=80" alt="Study group">
+      <span class="blog-cat">Academic Life</span>
+      <h3 class="blog-title">Surviving Midterms: Study Strategies That Actually Worked</h3>
+      <p class="blog-excerpt">Two months into university, midterm season arrived fast. Group study sessions, late nights, and a lot of chai — here's how I navigated my first university exams.</p>
+      <div class="blog-meta">
+        <span class="blog-date">February 18, 2026</span>
+        <span class="blog-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- POST 5 -->
+    <a class="blog-card" onclick="openModal(4); return false;" href="#">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&q=80" alt="Campus life">
+      <span class="blog-cat">Campus Life</span>
+      <h3 class="blog-title">UET Faisalabad: A Campus in the Middle of Nowhere (And Why I Love It)</h3>
+      <p class="blog-excerpt">Surrounded by fields and far from the city, UET Faisalabad Campus surprised me. Great faculty, organized labs, and a tight-knit community make it more than just a compromise.</p>
+      <div class="blog-meta">
+        <span class="blog-date">February 01, 2026</span>
+        <span class="blog-arrow">→</span>
       </div>
     </a>
 
@@ -506,30 +460,181 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <p class="section-tag">Contact</p>
-  <h2 class="section-title">Get In Touch</h2>
-  <p class="contact-desc">Have a question or want to connect? Feel free to reach out through any of these platforms.</p>
-  <div class="contact-links">
-    <a href="/cdn-cgi/l/email-protection#423b2d373002272f232b2e6c212d2f" class="contact-link">✉ Email Me</a>
-    <a href="https://github.com/Alim-Anwar" class="contact-link">⌥ GitHub</a>
-    <a href="#" class="contact-link">in LinkedIn</a>
+  <span class="section-tag">// Contact</span>
+  <h2 class="contact-title">Get In Touch</h2>
+  <p class="contact-sub">Have a question or want to connect? Reach me through any of these platforms.</p>
+  <div class="contact-grid">
+    <a href="mailto:alimanwar409@gmail.com" class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">alimanwar409@gmail.com</div>
+      </div>
+    </a>
+    <a href="tel:+923021784064" class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">+92 302 178 4064</div>
+      </div>
+    </a>
+    <a href="https://linkedin.com/in/alim-anwar" target="_blank" class="contact-card">
+      <div class="contact-icon">in</div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">Alim Anwar</div>
+      </div>
+    </a>
+    <a href="https://alim-anwar.github.io" target="_blank" class="contact-card">
+      <div class="contact-icon">⌥</div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">Alim-Anwar.github.io</div>
+      </div>
+    </a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>Built with ❤ by <span>Alim Anwar</span> · Hosted on GitHub Pages</p>
+  Built with ♥ by <a href="#">Alim Anwar</a> · Hosted on GitHub Pages
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Active nav link on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+<!-- BLOG MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnBg(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <img class="modal-img" id="modalImg" src="" alt="">
+    <span class="blog-cat" id="modalCat"></span>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <p class="modal-date" id="modalDate"></p>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 120) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.cla
+<script>
+const posts = [
+  {
+    cat: "University Life",
+    title: "My First Experience at University: Challenges, Growth & Learning",
+    date: "April 04, 2026",
+    img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=900&q=80",
+    body: `
+      <p>After passing my intermediate examinations with 72%, I aspired to study at the University of Engineering and Technology — one of the most prestigious engineering institutions in Pakistan. I chose an engineering program because UET has a strong reputation for producing skilled engineers who go on to shape the country's technological landscape.</p>
+      <h3>The ECAT Journey</h3>
+      <p>I applied for the ECAT university entry test. Unfortunately, I scored 40% marks. After combining my intermediate result with the required weightage, my aggregate became 61%. As my aggregate was relatively low, I was offered admission to UET Faisalabad (FSD) Campus — a sub-campus of UET Lahore.</p>
+      <p>Initially, I was unsure about what to expect. But within days of arrival, I realised this place had more to offer than I had imagined.</p>
+      <h3>Arriving at Campus</h3>
+      <p>It was my first visit to UET Faisalabad Campus, and everything was new. When I arrived with my suitcase, I was quite surprised — the university is located in a remote area surrounded by agricultural land, with very little population nearby. The contrast from city life was immediate and striking.</p>
+      <p>My father encouraged me through the initial discomfort, and within a few days, I began to adjust to my new environment. That adjustment, looking back, was one of the most valuable things I went through in my early university days.</p>
+      <h3>Faculty & Academic Environment</h3>
+      <p>One of the biggest advantages of this campus is its highly qualified faculty. The professors are experienced, knowledgeable, and genuinely supportive. They teach in a way that helps students grasp complex concepts without making them feel lost. The Head of Department is also a kind and cooperative person, and the departmental labs are well-equipped and properly organised.</p>
+      <p>Within a short time, I became familiar with my teachers, which made my academic journey feel much more comfortable and engaging.</p>
+      <h3>Reflecting on the First Chapter</h3>
+      <p>At the end of my first semester, we were given a two-week break. I used that time to rest and reflect. University life is not just about degrees — it is about discovering who you are when no one is watching. And UET Faisalabad, remote as it may be, gave me exactly that space to grow.</p>
+    `
+  },
+  {
+    cat: "Hostel Life",
+    title: "Life as a Hostellite: The Real University Curriculum",
+    date: "March 20, 2026",
+    img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=900&q=80",
+    body: `
+      <p>Moving into the campus hostel was the moment university life truly began for me. Within a few days of admission, I packed my suitcase and officially became a hostellite. Nothing could have fully prepared me for what followed.</p>
+      <h3>The Shock of the Mess</h3>
+      <p>The hostel mess was one of the first and most consistent challenges. The food quality was not up to the mark, and the cost was relatively high considering what was being served. Managing expectations — and my appetite — became a daily exercise in patience.</p>
+      <h3>Other Challenges</h3>
+      <p>Beyond the mess, hostel life came with a range of other issues: security concerns, poor sanitation in shared spaces, a shortage of rooms and washrooms, and very limited canteen or cafeteria options. These were not small inconveniences — they affected daily routines and mental well-being.</p>
+      <p>The water quality was a serious personal challenge. Being from Lahore, I was not accustomed to the water at the hostel. After a few days of drinking it, I experienced weakness, diarrhea, fever, and stomach problems. It took time for my body to adjust, and during that period, managing studies alongside poor health was genuinely tough.</p>
+      <h3>What Hostel Life Taught Me</h3>
+      <p>Despite all the difficulties, hostel life taught me things no classroom ever could — how to manage limited resources, how to build patience, how to rely on yourself when things get hard, and how to build community with strangers who eventually become friends.</p>
+      <p>If you're about to step into hostel life, my honest advice is this: go in with realistic expectations, a positive mindset, and a good water filter. The rest, you will figure out.</p>
+    `
+  },
+  {
+    cat: "Student Project",
+    title: "My First ML Project: Training a Machine Learning Model in Semester 1",
+    date: "March 05, 2026",
+    img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&q=80",
+    body: `
+      <p>During my first semester, I studied Python as part of the Programming Fundamentals (PF) course. We started with the basics — variables, data types, conditional statements, loops, and functions. These building blocks shaped the way I think about problem-solving.</p>
+      <h3>From Assignments to Machine Learning</h3>
+      <p>Throughout the semester, our professor assigned several coding tasks to strengthen our understanding. After the midterm examinations, the course took an exciting turn — our professor introduced us to the concept of Machine Learning. We learned the basic idea of training a model using datasets, which felt like unlocking a completely new dimension of programming.</p>
+      <p>For the final semester project, every group was required to train a simple ML model. My group selected a dataset and began developing our model by applying the concepts we had learned. It was the first time our work felt like something real — not just an exercise, but a functional piece of software.</p>
+      <h3>The Project Exhibition</h3>
+      <p>After completing our projects, the department organised a project exhibition. All professors, the Head of Department, and senior students were invited to attend. We prepared flex banners and posters explaining our objectives, methodology, and results. The seminar hall was decorated, each group had a stall, and the energy in the room was something I had never experienced in an academic setting before.</p>
+      <h3>Presenting to Seniors and Faculty</h3>
+      <p>On the day of the exhibition, our Programming Fundamentals professor, Dr. Bilal, officially opened the event and encouraged us to present with confidence. A senior student visited my stall and asked several pointed questions about my model — how the dataset was used, how the model was trained, and what results we achieved. Walking through the explanation clearly and confidently was a personal milestone.</p>
+      <p>At the end, the Head of Department praised both the students and the faculty for the quality of work produced. The department then arranged a small refreshment party, and we celebrated the end of our first semester with a real sense of achievement.</p>
+    `
+  },
+  {
+    cat: "Academic Life",
+    title: "Surviving Midterms: Study Strategies That Actually Worked",
+    date: "February 18, 2026",
+    img: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=900&q=80",
+    body: `
+      <p>Two months into my first semester, the midterm examination schedule was announced. The entire university seemed to shift into a different gear overnight — and so did I.</p>
+      <h3>The Pressure of First University Exams</h3>
+      <p>University exams are different from anything you've experienced before. The scope is wider, the expectations are higher, and the time pressure is real. I quickly realised that the study habits that worked in intermediate were not going to be enough here.</p>
+      <h3>Group Study: More Powerful Than I Expected</h3>
+      <p>One of the most valuable things I did during midterm preparation was participate in group study sessions with my classmates. Each person had a different understanding of the topics, and by sharing notes and explaining concepts to each other, we collectively filled in gaps that individual study would have missed.</p>
+      <p>There is something about explaining a concept out loud to someone else that forces you to truly understand it. I learned more in some of those late-night group sessions than I had in weeks of solo revision.</p>
+      <h3>Time Management Was Everything</h3>
+      <p>I also learned the hard way that cramming does not work at university level. Breaking the syllabus into manageable chunks, setting small daily goals, and keeping track of progress was far more effective than last-minute panic.</p>
+      <p>The midterms eventually passed, we got a short break, and then regular classes resumed before the final term arrived. Looking back, those two months before the midterms shaped how I now approach all studying — with structure, consistency, and a lot of group discussion.</p>
+    `
+  },
+  {
+    cat: "Campus Life",
+    title: "UET Faisalabad: A Campus in the Middle of Nowhere (And Why I Love It)",
+    date: "February 01, 2026",
+    img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=900&q=80",
+    body: `
+      <p>When people hear that UET Faisalabad Campus is surrounded by agricultural land with very little population nearby, they often raise an eyebrow. I understand that reaction — I had the same one when I first arrived.</p>
+      <h3>The First Impression</h3>
+      <p>Stepping onto campus for the first time, suitcase in hand, the remoteness was undeniable. No busy streets, no shopping centres, no crowd. Just fields, sky, and a university that felt oddly quiet compared to the city I came from.</p>
+      <p>My father was with me that day, and his encouragement made the difference between turning back and walking in. I am grateful I walked in.</p>
+      <h3>What the Campus Gets Right</h3>
+      <p>The faculty is genuinely excellent. Professors who are not just knowledgeable but also approachable — willing to help students work through concepts they do not understand. The labs are well-maintained and properly equipped for practical learning. And the Head of Department sets a tone of cooperation and encouragement that trickles down to every interaction on campus.</p>
+      <h3>The Unexpected Benefit of Remoteness</h3>
+      <p>Being far from the city turns out to have an unlikely advantage: fewer distractions. When there is nowhere else to go, you focus. You study. You build habits. You get to know your peers more deeply because they are the ones around you. The campus creates a kind of focused bubble that is actually really good for academic and personal growth.</p>
+      <p>UET Faisalabad may not have been my first choice. But it has shaped me in ways that a more comfortable, convenient campus might not have. And for that, I am genuinely glad I ended up here.</p>
+    `
+  }
+];
+
+function openModal(i) {
+  const p = posts[i];
+  document.getElementById('modalImg').src = p.img;
+  document.getElementById('modalCat').textContent = p.cat;
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalDate').textContent = p.date;
+  document.getElementById('modalBody').innerHTML = p.body;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOnBg(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Active nav highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
