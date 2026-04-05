@@ -77,7 +77,7 @@
     display: block;
   }
 
-  /* ── HERO ── */
+  /* ── HERO & TYPING ANIMATION ── */
   #home {
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -95,6 +95,15 @@
     background: radial-gradient(circle, var(--teal-glow) 0%, transparent 70%);
     pointer-events: none;
   }
+
+  .typing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-height: 160px;
+  }
+
   .hero-greeting {
     font-family: var(--font-mono);
     font-size: 0.78rem;
@@ -104,32 +113,54 @@
     margin-bottom: 20px;
     opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
   }
+
   .hero-hello {
     font-family: var(--font-display);
     font-size: clamp(2.8rem, 6vw, 5.5rem);
     color: var(--white);
     line-height: 1.05;
-    opacity: 0; animation: fadeUp 0.6s 0.35s forwards;
+    overflow: hidden; 
+    white-space: nowrap; 
+    border-right: 3px solid var(--teal);
+    width: 0;
+    animation: 
+      typing-hello 1.5s steps(11, end) 0.5s forwards,
+      blink-caret 0.75s step-end infinite,
+      hide-cursor 0s 2.1s forwards;
   }
+
   .hero-name {
     font-family: var(--font-display);
     font-size: clamp(3rem, 8vw, 7rem);
     color: var(--teal);
     line-height: 1.0;
-    opacity: 0; animation: fadeUp 0.6s 0.5s forwards;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    border-right: 3px solid transparent;
+    animation: 
+      typing-name 1.5s steps(10, end) 2.1s forwards,
+      blink-caret 0.75s step-end infinite 2.1s;
   }
+
+  @keyframes typing-hello { from { width: 0 } to { width: 11ch; } }
+  @keyframes typing-name { from { width: 0 } to { width: 10ch; } }
+  @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--teal); } }
+  @keyframes hide-cursor { to { border-right-color: transparent; } }
+
   .hero-sub {
     margin-top: 22px;
     font-size: 0.88rem;
     color: var(--muted);
     letter-spacing: 0.04em;
-    opacity: 0; animation: fadeUp 0.6s 0.65s forwards;
+    opacity: 0; animation: fadeUp 0.6s 3.8s forwards;
   }
   .hero-sub span { color: var(--text); margin: 0 10px; }
   .hero-btns {
     display: flex; gap: 14px; margin-top: 36px; justify-content: center;
-    opacity: 0; animation: fadeUp 0.6s 0.8s forwards;
+    opacity: 0; animation: fadeUp 0.6s 4.0s forwards;
   }
+
   .btn-primary {
     background: var(--teal); color: #000;
     padding: 12px 28px; border-radius: 50px;
@@ -197,7 +228,6 @@
     border-radius: 14px; padding: 28px;
     transition: border-color 0.25s, transform 0.25s;
     cursor: pointer; position: relative; overflow: hidden;
-    color: inherit;
   }
   .blog-card:hover {
     border-color: var(--teal);
@@ -262,16 +292,7 @@
   .contact-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 2px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
   .contact-value { font-size: 0.82rem; color: var(--white); font-weight: 500; word-break: break-all; }
 
-  /* ── FOOTER ── */
-  footer {
-    text-align: center; padding: 32px 24px;
-    border-top: 1px solid var(--border);
-    font-size: 0.75rem; color: var(--muted);
-    font-family: var(--font-mono);
-  }
-  footer a { color: var(--teal); text-decoration: none; }
-
-  /* ── BLOG POST MODAL ── */
+  /* ── MODAL ── */
   .modal-overlay {
     display: none; position: fixed; inset: 0;
     background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
@@ -287,18 +308,14 @@
   .modal-close {
     position: absolute; top: 20px; right: 24px;
     background: none; border: none; color: var(--muted);
-    font-size: 1.5rem; cursor: pointer; line-height: 1;
+    font-size: 1.5rem; cursor: pointer;
   }
   .modal-close:hover { color: var(--teal); }
   .modal-img {
     width: 100%; height: 280px; object-fit: cover;
     border-radius: 12px; margin-bottom: 28px;
   }
-  .modal-title {
-    font-family: var(--font-display);
-    font-size: 2rem; color: var(--white);
-    line-height: 1.2; margin: 14px 0 8px;
-  }
+  .modal-title { font-family: var(--font-display); font-size: 2rem; color: var(--white); line-height: 1.2; margin: 14px 0 8px; }
   .modal-date { font-size: 0.75rem; color: var(--muted); font-family: var(--font-mono); margin-bottom: 28px; }
   .modal-body { font-size: 0.88rem; color: var(--text); line-height: 1.85; }
   .modal-body p { margin-bottom: 14px; }
@@ -314,7 +331,6 @@
     section { padding: 70px 24px; }
     .about-grid { grid-template-columns: 1fr; }
     .blog-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
-    .blog-card.featured .blog-img { height: 200px; }
     .contact-grid { grid-template-columns: 1fr; }
     .modal { padding: 28px 20px; }
   }
@@ -334,8 +350,10 @@
 
 <section id="home">
   <p class="hero-greeting">👋 Welcome to my portfolio</p>
-  <h1 class="hero-hello">Hello, I am</h1>
-  <h2 class="hero-name">Alim Anwar</h2>
+  <div class="typing-container">
+    <h1 class="hero-hello">Hello, I am</h1>
+    <h2 class="hero-name">Alim Anwar</h2>
+  </div>
   <p class="hero-sub">Computer Engineering Student <span>|</span> Web Developer</p>
   <div class="hero-btns">
     <a href="#blog" class="btn-primary">Read My Blog →</a>
@@ -349,34 +367,20 @@
     <div>
       <h2 class="about-title">Engineering student,<br><em>passionate learner.</em></h2>
       <p class="about-text">I'm a Computer Engineering student at UET Faisalabad Campus, navigating the rewarding challenges of university life — from hostel experiences to hands-on programming projects.</p>
-      <p class="about-text">I'm passionate about web development and machine learning, and I love documenting my learning journey through writing.</p>
       <div class="skills-list">
         <span class="skill-tag">Python</span>
         <span class="skill-tag">Machine Learning</span>
         <span class="skill-tag">Web Dev</span>
         <span class="skill-tag">HTML/CSS</span>
-        <span class="skill-tag">Jekyll</span>
         <span class="skill-tag">GitHub Pages</span>
       </div>
     </div>
     <div>
       <div class="about-stats">
-        <div class="stat-card">
-          <div class="stat-num">1st</div>
-          <div class="stat-label">Year at UET Faisalabad</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">72%</div>
-          <div class="stat-label">Intermediate Score</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">ML</div>
-          <div class="stat-label">First Semester Project</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">CS</div>
-          <div class="stat-label">Computer Engineering</div>
-        </div>
+        <div class="stat-card"><div class="stat-num">1st</div><div class="stat-label">Year at UET</div></div>
+        <div class="stat-card"><div class="stat-num">72%</div><div class="stat-label">Inter Score</div></div>
+        <div class="stat-card"><div class="stat-num">ML</div><div class="stat-label">Core Interest</div></div>
+        <div class="stat-card"><div class="stat-num">CE</div><div class="stat-label">Degree</div></div>
       </div>
     </div>
   </div>
@@ -384,169 +388,22 @@
 
 <section id="blog">
   <span class="section-tag">// My Blog Posts</span>
-  <h2 class="blog-header">My Blog Posts</h2>
-  <div class="blog-grid">
-
-    <div class="blog-card featured" onclick="openModal(0)">
-      <div>
-        <img class="blog-img" src="https://images.unsplash.com/photo-1562774053-701939374585?w=700&q=80" alt="University campus engineering">
-      </div>
-      <div>
-        <span class="blog-cat">University Life</span>
-        <h3 class="blog-title">My First Experience at University: Challenges, Growth & Learning</h3>
-        <p class="blog-excerpt">After passing intermediate with 72%, I stepped into UET Faisalabad — a remote campus surrounded by agricultural land. What followed was a crash course in resilience, adaptation, and growth.</p>
-        <div class="blog-meta">
-          <span class="blog-date">April 04, 2026</span>
-          <span class="blog-arrow">→</span>
-        </div>
-      </div>
+  <h2 class="blog-header">Latest Insights</h2>
+  <div class="blog-grid" id="blogGrid">
     </div>
-
-    <div class="blog-card" onclick="openModal(1)">
-      <img class="blog-img" src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80" alt="Hostel life">
-      <span class="blog-cat">Hostel Life</span>
-      <h3 class="blog-title">Life as a Hostellite: The Real University Curriculum</h3>
-      <p class="blog-excerpt">Hostel life threw me into the deep end — food quality issues, water problems, shared washrooms, and security concerns. Here's how I turned chaos into character.</p>
-      <div class="blog-meta">
-        <span class="blog-date">March 20, 2026</span>
-        <span class="blog-arrow">→</span>
-      </div>
-    </div>
-
-    <div class="blog-card" onclick="openModal(2)">
-      <img class="blog-img" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80" alt="Programming">
-      <span class="blog-cat">Student Project</span>
-      <h3 class="blog-title">My First ML Project: Training a Machine Learning Model in Semester 1</h3>
-      <p class="blog-excerpt">From learning variables and loops in Python to presenting a machine learning model at a department exhibition — here's how our first semester project unfolded.</p>
-      <div class="blog-meta">
-        <span class="blog-date">March 05, 2026</span>
-        <span class="blog-arrow">→</span>
-      </div>
-    </div>
-
-    <div class="blog-card" onclick="openModal(3)">
-      <img class="blog-img" src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&q=80" alt="Study group">
-      <span class="blog-cat">Academic Life</span>
-      <h3 class="blog-title">Surviving Midterms: Study Strategies That Actually Worked</h3>
-      <p class="blog-excerpt">Two months into university, midterm season arrived fast. Group study sessions, late nights, and a lot of chai — here's how I navigated my first university exams.</p>
-      <div class="blog-meta">
-        <span class="blog-date">February 18, 2026</span>
-        <span class="blog-arrow">→</span>
-      </div>
-    </div>
-
-    <div class="blog-card" onclick="openModal(4)">
-      <img class="blog-img" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=600&q=80" alt="Campus life">
-      <span class="blog-cat">Campus Life</span>
-      <h3 class="blog-title">UET Faisalabad: A Campus in the Middle of Nowhere (And Why I Love It)</h3>
-      <p class="blog-excerpt">Surrounded by fields and far from the city, UET Faisalabad Campus surprised me. Great faculty, organized labs, and a tight-knit community make it more than just a compromise.</p>
-      <div class="blog-meta">
-        <span class="blog-date">February 01, 2026</span>
-        <span class="blog-arrow">→</span>
-      </div>
-    </div>
-
-    <div class="blog-card" onclick="openModal(5)">
-      <img class="blog-img" src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&q=80" alt="New semester beginning">
-      <span class="blog-cat">Semester 2</span>
-      <h3 class="blog-title">Second Semester Begins: A Fresh Start with Higher Stakes</h3>
-      <p class="blog-excerpt">After a two-week break, returning to campus for the second semester felt different. New subjects, new expectations, and lessons carried forward from semester one.</p>
-      <div class="blog-meta">
-        <span class="blog-date">January 20, 2026</span>
-        <span class="blog-arrow">→</span>
-      </div>
-    </div>
-
-    <div class="blog-card" onclick="openModal(6)">
-      <img class="blog-img" src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=600&q=80" alt="Online classes laptop">
-      <span class="blog-cat">Online Classes</span>
-      <h3 class="blog-title">When War Moved Our Classroom Online: Studying Through Global Uncertainty</h3>
-      <p class="blog-excerpt">As tensions escalated in the Iran-Israel conflict, our university shifted to online classes. Adapting to virtual learning from a hostel room was its own kind of challenge.</p>
-      <div class="blog-meta">
-        <span class="blog-date">February 10, 2026</span>
-        <span class="blog-arrow">→</span>
-      </div>
-    </div>
-
-    <div class="blog-card" onclick="openModal(7)">
-      <img class="blog-img" src="https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=600&q=80" alt="Ramadan mosque lanterns">
-      <span class="blog-cat">Ramadan & Eid</span>
-      <h3 class="blog-title">Ramadan in the Hostel: Sehri, Iftaar, and Brotherhood</h3>
-      <p class="blog-excerpt">Spending Ramadan away from home for the first time was emotional. But the hostel became its own kind of family — sharing sehri, breaking fast together, and counting down to Eid.</p>
-      <div class="blog-meta">
-        <span class="blog-date">March 01, 2026</span>
-        <span class="blog-arrow">→</span>
-      </div>
-    </div>
-
-    <div class="blog-card" onclick="openModal(8)">
-      <img class="blog-img" src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80" alt="Eid celebration Pakistan">
-      <span class="blog-cat">Eid</span>
-      <h3 class="blog-title">Eid ul-Fitr During Online Class Holidays: Celebrating While the World Watched the War</h3>
-      <p class="blog-excerpt">Eid arrived during the Iran-Israel conflict period when our classes had gone online. A strange mix of celebration and global tension — but Eid at home still felt like home.</p>
-      <div class="blog-meta">
-        <span class="blog-date">March 10, 2026</span>
-        <span class="blog-arrow">→</span>
-      </div>
-    </div>
-
-    <div class="blog-card" onclick="openModal(9)">
-      <img class="blog-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80" alt="Exam preparation studying">
-      <span class="blog-cat">Midterms S2</span>
-      <h3 class="blog-title">Second Semester Midterms: Harder Questions, Better Answers</h3>
-      <p class="blog-excerpt">Semester two midterms hit differently. More subjects, more complexity — but also more experience. Here's how I approached them and what I learned about myself under pressure.</p>
-      <div class="blog-meta">
-        <span class="blog-date">March 25, 2026</span>
-        <span class="blog-arrow">→</span>
-      </div>
-    </div>
-
-    <div class="blog-card" onclick="openModal(10)">
-      <img class="blog-img" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80" alt="Student life balance">
-      <span class="blog-cat">Student Life</span>
-      <h3 class="blog-title">Balancing It All: Studies, Hostel, and Mental Health in Semester 2</h3>
-      <p class="blog-excerpt">By the second semester, the novelty had worn off and the real grind had set in. This is how I learned to balance academic pressure, hostel life, and still find time to breathe.</p>
-      <div class="blog-meta">
-        <span class="blog-date">April 01, 2026</span>
-        <span class="blog-arrow">→</span>
-      </div>
-    </div>
-
-  </div>
 </section>
 
 <section id="contact">
   <span class="section-tag">// Contact</span>
   <h2 class="contact-title">Get In Touch</h2>
-  <p class="contact-sub">Have a question or want to connect? Reach me through any of these platforms.</p>
   <div class="contact-grid">
     <a href="mailto:alimanwar@example.com" class="contact-card">
       <div class="contact-icon">✉️</div>
-      <div>
-        <div class="contact-label">Email</div>
-        <div class="contact-value">alimanwar@example.com</div>
-      </div>
+      <div><div class="contact-label">Email</div><div class="contact-value">alimanwar@example.com</div></div>
     </a>
     <a href="tel:+923021784064" class="contact-card">
       <div class="contact-icon">📞</div>
-      <div>
-        <div class="contact-label">Phone</div>
-        <div class="contact-value">+92 302 178 4064</div>
-      </div>
-    </a>
-    <a href="https://linkedin.com/in/alim-anwar" target="_blank" class="contact-card">
-      <div class="contact-icon">in</div>
-      <div>
-        <div class="contact-label">LinkedIn</div>
-        <div class="contact-value">Alim Anwar</div>
-      </div>
-    </a>
-    <a href="https://alim-anwar.github.io" target="_blank" class="contact-card">
-      <div class="contact-icon">⌥</div>
-      <div>
-        <div class="contact-label">GitHub</div>
-        <div class="contact-value">Alim-Anwar.github.io</div>
-      </div>
+      <div><div class="contact-label">Phone</div><div class="contact-value">+92 302 178 4064</div></div>
     </a>
   </div>
 </section>
@@ -556,10 +413,10 @@
 </footer>
 
 <div class="modal-overlay" id="modalOverlay" onclick="closeOnBg(event)">
-  <div class="modal" id="modal">
+  <div class="modal">
     <button class="modal-close" onclick="closeModal()">×</button>
     <img class="modal-img" id="modalImg" src="" alt="">
-    <span class="blog-cat" id="modalCat" style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); background: var(--teal-dim); padding: 3px 10px; border-radius: 4px; display: inline-block; margin-bottom: 14px;"></span>
+    <span class="blog-cat" id="modalCat"></span>
     <h2 class="modal-title" id="modalTitle"></h2>
     <p class="modal-date" id="modalDate"></p>
     <div class="modal-body" id="modalBody"></div>
@@ -572,108 +429,109 @@ const posts = [
     cat: "University Life",
     title: "My First Experience at University: Challenges, Growth & Learning",
     date: "April 04, 2026",
+    excerpt: "After passing intermediate with 72%, I stepped into UET Faisalabad — a crash course in resilience.",
     img: "https://images.unsplash.com/photo-1562774053-701939374585?w=900&q=80",
-    body: `
-      <p>After passing my intermediate examinations with 72%, I aspired to study at the University of Engineering and Technology (UET). My aggregate was 61%, and I was offered admission to UET Faisalabad (FSD) Campus.</p>
-      <h3>Arriving at Campus</h3>
-      <p>The university is located in a remote area surrounded by agricultural land. My father encouraged me through the initial discomfort, and within a few days, I began to adjust to my new environment.</p>
-      <h3>Faculty & Academic Environment</h3>
-      <p>The professors are experienced and genuinely supportive. The departmental labs are well-equipped and properly organised. At the end of my first semester, I realized university is about discovering who you are when no one is watching.</p>
-    `
+    body: `<h3>Arriving at Campus</h3><p>The university is located in a remote area surrounded by agricultural land. Within a few days, I began to adjust to my new environment.</p><h3>Academic Environment</h3><p>The departmental labs are well-equipped. At the end of my first semester, I realized university is about discovering who you are when no one is watching.</p>`
   },
   {
     cat: "Hostel Life",
     title: "Life as a Hostellite: The Real University Curriculum",
     date: "March 20, 2026",
+    excerpt: "Hostel life threw me into the deep end — food, water, and character building.",
     img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=900&q=80",
-    body: `
-      <p>Moving into the campus hostel was the moment university life truly began. It came with a range of challenges: mess food, water quality issues, and shared spaces.</p>
-      <p>Being from Lahore, the water at the hostel took some time to adjust to. Despite the difficulties, hostel life taught me how to manage limited resources and how to build patience.</p>
-    `
+    body: `<p>Moving into the campus hostel was the moment university life truly began. It came with challenges: mess food, water quality issues, and shared spaces.</p><p>Despite the difficulties, hostel life taught me how to manage limited resources and build patience.</p>`
   },
   {
     cat: "Student Project",
     title: "My First ML Project: Training a Machine Learning Model in Semester 1",
     date: "March 05, 2026",
+    excerpt: "From learning variables in Python to presenting a machine learning model at a department exhibition.",
     img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&q=80",
-    body: `
-      <p>During my first semester, I studied Python. After the midterms, our professor introduced us to Machine Learning. For the final project, my group selected a dataset and trained a functional ML model.</p>
-      <p>We presented our work at a department exhibition. Explaining my model to seniors and faculty was a massive personal milestone.</p>
-    `
+    body: `<p>During my first semester, I studied Python. After the midterms, our professor introduced us to Machine Learning.</p><p>We presented our work at a department exhibition. Explaining my model to seniors and faculty was a massive personal milestone.</p>`
   },
   {
     cat: "Academic Life",
     title: "Surviving Midterms: Study Strategies That Actually Worked",
     date: "February 18, 2026",
+    excerpt: "Group study sessions, late nights, and a lot of chai — here's how I navigated exams.",
     img: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=900&q=80",
-    body: `
-      <p>University exams require a wider scope of understanding than intermediate exams. I participated in group study sessions, which helped me fill gaps in my knowledge by explaining concepts out loud.</p>
-    `
+    body: `<p>University exams require a wider scope of understanding. I participated in group study sessions, which helped me fill gaps in my knowledge by explaining concepts out loud.</p>`
   },
   {
     cat: "Campus Life",
     title: "UET Faisalabad: A Campus in the Middle of Nowhere",
     date: "February 01, 2026",
+    excerpt: "Surrounded by fields, UET Faisalabad Campus surprised me with its organized community.",
     img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=900&q=80",
-    body: `
-      <p>The remoteness of UET Faisalabad actually has an advantage: fewer distractions. It creates a focused bubble that is excellent for academic and personal growth.</p>
-    `
+    body: `<p>The remoteness of UET Faisalabad actually has an advantage: fewer distractions. It creates a focused bubble that is excellent for academic growth.</p>`
   },
   {
     cat: "Semester 2",
-    title: "Second Semester Begins: A Fresh Start",
+    title: "Second Semester Begins: A Fresh Start with Higher Stakes",
     date: "January 20, 2026",
+    excerpt: "Returning for the second semester felt different. I knew the routines and the expectations.",
     img: "https://images.unsplash.com/photo-1588072432836-e10032774350?w=900&q=80",
-    body: `
-      <p>Returning for the second semester felt different. I knew the routines. The subjects like data structures and circuits required more focus, but I felt more strategic with my time.</p>
-    `
+    body: `<p>Returning for the second semester felt different. The subjects like data structures and circuits required more focus, but I felt more strategic with my time.</p>`
   },
   {
     cat: "Online Classes",
     title: "When War Moved Our Classroom Online",
     date: "February 10, 2026",
+    excerpt: "As tensions escalated, our university shifted to online classes. Virtual learning was its own challenge.",
     img: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=900&q=80",
-    body: `
-      <p>Due to tensions in the Iran-Israel conflict, the university shifted to online classes. Studying from a hostel room revealed new challenges, like network issues and the absence of hands-on lab work.</p>
-    `
+    body: `<p>Due to regional tensions, the university shifted to online classes. Studying from a hostel room revealed new challenges, like network issues and the absence of lab work.</p>`
   },
   {
     cat: "Ramadan & Eid",
     title: "Ramadan in the Hostel: Sehri, Iftaar, and Brotherhood",
     date: "March 01, 2026",
+    excerpt: "Spending Ramadan away from home for the first time was emotional, but the hostel became family.",
     img: "https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=900&q=80",
-    body: `
-      <p>Observing Ramadan away from home was emotional. The hostel became its own kind of family — sharing sehri and breaking fast together made the academic pressure much more manageable.</p>
-    `
+    body: `<p>Observing Ramadan away from home was emotional. Sharing sehri and breaking fast together made the academic pressure much more manageable.</p>`
   },
   {
     cat: "Eid",
     title: "Eid ul-Fitr During Online Class Holidays",
     date: "March 10, 2026",
+    excerpt: "Eid at home felt like home, even as the world watched global tensions unfold.",
     img: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=900&q=80",
-    body: `
-      <p>Because of the online classes, I was able to return to Lahore for Eid. Celebrating at home with family recharged me after months of hostel routine.</p>
-    `
+    body: `<p>Because of the online classes, I was able to return to Lahore for Eid. Celebrating at home recharged me after months of hostel routine.</p>`
   },
   {
     cat: "Midterms S2",
     title: "Second Semester Midterms: Harder Questions, Better Answers",
     date: "March 25, 2026",
+    excerpt: "Semester two midterms hit differently. More complexity, but also more experience.",
     img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=900&q=80",
-    body: `
-      <p>Semester 2 midterms required deeper conceptual thinking. I focused on weak areas and structured my group study sessions more deliberately this time.</p>
-    `
+    body: `<p>Semester 2 midterms required deeper conceptual thinking. I focused on weak areas and structured my study sessions more deliberately.</p>`
   },
   {
     cat: "Student Life",
     title: "Balancing It All: Studies, Hostel, and Mental Health",
     date: "April 01, 2026",
+    excerpt: "How I learned to balance academic pressure, hostel life, and still find time to breathe.",
     img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=80",
-    body: `
-      <p>University is a long road. I learned that endurance is about finding small ways to recover — like walks around campus or calls with family — so you can keep going.</p>
-    `
+    body: `<p>University is a long road. Endurance is about finding small ways to recover — like walks around campus — so you can keep going.</p>`
   }
 ];
+
+// Initialize Blog Grid
+const blogGrid = document.getElementById('blogGrid');
+posts.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = `blog-card ${i === 0 ? 'featured' : ''}`;
+  card.onclick = () => openModal(i);
+  card.innerHTML = `
+    ${i === 0 ? `<div><img class="blog-img" src="${p.img}"></div>` : `<img class="blog-img" src="${p.img}">`}
+    <div>
+      <span class="blog-cat">${p.cat}</span>
+      <h3 class="blog-title">${p.title}</h3>
+      <p class="blog-excerpt">${p.excerpt}</p>
+      <div class="blog-meta"><span class="blog-date">${p.date}</span><span class="blog-arrow">→</span></div>
+    </div>
+  `;
+  blogGrid.appendChild(card);
+});
 
 function openModal(i) {
   const p = posts[i];
@@ -683,39 +541,27 @@ function openModal(i) {
   document.getElementById('modalDate').textContent = p.date;
   document.getElementById('modalBody').innerHTML = p.body;
   document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden'; // Prevent scrolling background
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = ''; 
+  document.body.style.overflow = '';
 }
 
-function closeOnBg(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
+function closeOnBg(e) { if (e.target.classList.contains('modal-overlay')) closeModal(); }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// Active nav highlight on scroll
-const sections = document.querySelectorAll('section[id]');
+// Scroll spy
 const navLinks = document.querySelectorAll('.nav-links a');
-
+const sections = document.querySelectorAll('section');
 window.addEventListener('scroll', () => {
   let current = "";
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-    if (pageYOffset >= (sectionTop - 150)) {
-      current = section.getAttribute('id');
-    }
-  });
-
+  sections.forEach(s => { if (pageYOffset >= s.offsetTop - 150) current = s.getAttribute('id'); });
   navLinks.forEach(a => {
     a.classList.remove('active');
-    if (a.getAttribute('href').includes(current)) {
-      a.classList.add('active');
-    }
+    if (a.getAttribute('href').includes(current)) a.classList.add('active');
   });
 });
 </script>
