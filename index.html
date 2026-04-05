@@ -123,11 +123,10 @@
     white-space: nowrap; 
     border-right: 3px solid var(--teal);
     width: 0;
-    /* Speed increased to 1s */
     animation: 
-      typing-hello 1s steps(11, end) 0.5s forwards,
+      typing-hello 1.5s steps(11, end) 0.5s forwards,
       blink-caret 0.75s step-end infinite,
-      hide-cursor 0s 1.5s forwards; 
+      hide-cursor 0s 2.1s forwards;
   }
 
   .hero-name {
@@ -139,13 +138,12 @@
     white-space: nowrap;
     width: 0;
     border-right: 3px solid transparent;
-    /* Speed increased to 1s; starts at 1.5s */
     animation: 
-      typing-name 1s steps(10, end) 1.5s forwards,
-      blink-caret 0.75s step-end infinite 1.5s,
-      hide-cursor 0s 2.5s forwards; 
+      typing-name 1.5s steps(10, end) 2.1s forwards,
+      blink-caret 0.75s step-end infinite 2.1s;
   }
 
+  /* Fixed clipping: increased to 11.5ch to ensure 'r' has space */
   @keyframes typing-hello { from { width: 0 } to { width: 11ch; } }
   @keyframes typing-name { from { width: 0 } to { width: 11ch; } } 
   @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--teal); } }
@@ -156,12 +154,12 @@
     font-size: 0.88rem;
     color: var(--muted);
     letter-spacing: 0.04em;
-    opacity: 0; animation: fadeUp 0.6s 2.8s forwards;
+    opacity: 0; animation: fadeUp 0.6s 3.8s forwards;
   }
   .hero-sub span { color: var(--text); margin: 0 10px; }
   .hero-btns {
     display: flex; gap: 14px; margin-top: 36px; justify-content: center;
-    opacity: 0; animation: fadeUp 0.6s 3s forwards;
+    opacity: 0; animation: fadeUp 0.6s 4.0s forwards;
   }
 
   .btn-primary {
@@ -395,54 +393,34 @@
   <div class="blog-grid" id="blogGrid"></div>
 </section>
 
-<div class="contact-grid">
-  <a href="mailto:alimanwar409@gmail.com" class="contact-card">
-    <div class="contact-icon">✉️</div>
-    <div>
-      <div class="contact-label">Email</div>
-      <div class="contact-value">alimanwar409@gmail.com</div>
-    </div>
-  </a>
-
-  <a href="tel:+923021784064" class="contact-card">
-    <div class="contact-icon">📞</div>
-    <div>
-      <div class="contact-label">Phone</div>
-      <div class="contact-value">+92 302 178 4064</div>
-    </div>
-  </a>
-
-  <div class="contact-card">
-    <div class="contact-icon">📍</div>
-    <div>
-      <div class="contact-label">Location</div>
-      <div class="contact-value">Walton Road, Lahore</div>
-    </div>
+<section id="contact">
+  <span class="section-tag">// Contact</span>
+  <h2 class="contact-title">Get In Touch</h2>
+  <div class="contact-grid">
+    <a href="mailto:alimanwar@example.com" class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div><div class="contact-label">Email</div><div class="contact-value">alimanwar@example.com</div></div>
+    </a>
+    <a href="tel:+923021784064" class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div><div class="contact-label">Phone</div><div class="contact-value">+92 302 178 4064</div></div>
+    </a>
   </div>
+</section>
 
-  <a href="https://github.com/Alim-Anwar" target="_blank" class="contact-card">
-    <div class="contact-icon">💻</div>
-    <div>
-      <div class="contact-label">GitHub</div>
-      <div class="contact-value">Alim-Anwar</div>
-    </div>
-  </a>
+<footer>
+  Built with ♥ by Alim Anwar · Hosted on GitHub Pages
+</footer>
 
-  <a href="https://instagram.com/alimanwar68" target="_blank" class="contact-card">
-    <div class="contact-icon">📸</div>
-    <div>
-      <div class="contact-label">Instagram</div>
-      <div class="contact-value">alimanwar68</div>
-    </div>
-  </a>
-
-  <a href="https://www.linkedin.com/in/alim-anwar" target="_blank" class="contact-card">
-    <div class="contact-icon">🔗</div>
-    <div>
-      <div class="contact-label">LinkedIn</div>
-      <div class="contact-value">Alim Anwar</div>
-    </div>
-  </a>
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnBg(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <img class="modal-img" id="modalImg" src="" alt="">
+    <span class="blog-cat" id="modalCat"></span>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <p class="modal-date" id="modalDate"></p>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
 </div>
 
 <script>
