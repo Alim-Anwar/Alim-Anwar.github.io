@@ -80,7 +80,8 @@
   /* ── HERO ── */
   #home {
     min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
     padding-top: 120px;
     max-width: 100%;
     padding-left: 8vw; padding-right: 8vw;
@@ -89,8 +90,8 @@
   }
   #home::before {
     content: '';
-    position: absolute; top: -200px; right: -200px;
-    width: 600px; height: 600px;
+    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 700px;
     background: radial-gradient(circle, var(--teal-glow) 0%, transparent 70%);
     pointer-events: none;
   }
@@ -126,7 +127,7 @@
   }
   .hero-sub span { color: var(--text); margin: 0 10px; }
   .hero-btns {
-    display: flex; gap: 14px; margin-top: 36px;
+    display: flex; gap: 14px; margin-top: 36px; justify-content: center;
     opacity: 0; animation: fadeUp 0.6s 0.8s forwards;
   }
   .btn-primary {
@@ -394,7 +395,7 @@
     <!-- POST 1 — FEATURED -->
     <a class="blog-card featured" onclick="openModal(0); return false;" href="#">
       <div>
-        <img class="blog-img" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700&q=80" alt="University entrance">
+        <img class="blog-img" src="https://images.unsplash.com/photo-1562774053-701939374585?w=700&q=80" alt="University campus engineering">
       </div>
       <div>
         <span class="blog-cat">University Life</span>
@@ -455,6 +456,78 @@
       </div>
     </a>
 
+    <!-- POST 6 -->
+    <a class="blog-card" onclick="openModal(5); return false;" href="#">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&q=80" alt="New semester beginning">
+      <span class="blog-cat">Semester 2</span>
+      <h3 class="blog-title">Second Semester Begins: A Fresh Start with Higher Stakes</h3>
+      <p class="blog-excerpt">After a two-week break, returning to campus for the second semester felt different. New subjects, new expectations, and lessons carried forward from semester one.</p>
+      <div class="blog-meta">
+        <span class="blog-date">January 20, 2026</span>
+        <span class="blog-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- POST 7 -->
+    <a class="blog-card" onclick="openModal(6); return false;" href="#">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=600&q=80" alt="Online classes laptop">
+      <span class="blog-cat">Online Classes</span>
+      <h3 class="blog-title">When War Moved Our Classroom Online: Studying Through Global Uncertainty</h3>
+      <p class="blog-excerpt">As tensions escalated in the Iran-Israel conflict, our university shifted to online classes. Adapting to virtual learning from a hostel room was its own kind of challenge.</p>
+      <div class="blog-meta">
+        <span class="blog-date">February 10, 2026</span>
+        <span class="blog-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- POST 8 -->
+    <a class="blog-card" onclick="openModal(7); return false;" href="#">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=600&q=80" alt="Ramadan lanterns night">
+      <span class="blog-cat">Ramadan & Eid</span>
+      <h3 class="blog-title">Ramadan in the Hostel: Sehri, Iftaar, and Brotherhood</h3>
+      <p class="blog-excerpt">Spending Ramadan away from home for the first time was emotional. But the hostel became its own kind of family — sharing sehri, breaking fast together, and counting down to Eid.</p>
+      <div class="blog-meta">
+        <span class="blog-date">March 01, 2026</span>
+        <span class="blog-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- POST 9 -->
+    <a class="blog-card" onclick="openModal(8); return false;" href="#">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80" alt="Eid celebration family">
+      <span class="blog-cat">Eid</span>
+      <h3 class="blog-title">Going Home for Eid: The Trip That Recharged Everything</h3>
+      <p class="blog-excerpt">After weeks of hostel life, Ramadan fasting, and online classes, Eid holidays meant going back to Lahore. That trip home reminded me why I was doing all of this.</p>
+      <div class="blog-meta">
+        <span class="blog-date">March 10, 2026</span>
+        <span class="blog-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- POST 10 -->
+    <a class="blog-card" onclick="openModal(9); return false;" href="#">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80" alt="Exam preparation studying">
+      <span class="blog-cat">Midterms S2</span>
+      <h3 class="blog-title">Second Semester Midterms: Harder Questions, Better Answers</h3>
+      <p class="blog-excerpt">Semester two midterms hit differently. More subjects, more complexity — but also more experience. Here's how I approached them and what I learned about myself under pressure.</p>
+      <div class="blog-meta">
+        <span class="blog-date">March 25, 2026</span>
+        <span class="blog-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- POST 11 -->
+    <a class="blog-card" onclick="openModal(10); return false;" href="#">
+      <img class="blog-img" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80" alt="Student life balance">
+      <span class="blog-cat">Student Life</span>
+      <h3 class="blog-title">Balancing It All: Studies, Hostel, and Mental Health in Semester 2</h3>
+      <p class="blog-excerpt">By the second semester, the novelty had worn off and the real grind had set in. This is how I learned to balance academic pressure, hostel life, and still find time to breathe.</p>
+      <div class="blog-meta">
+        <span class="blog-date">April 01, 2026</span>
+        <span class="blog-arrow">→</span>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -464,11 +537,11 @@
   <h2 class="contact-title">Get In Touch</h2>
   <p class="contact-sub">Have a question or want to connect? Reach me through any of these platforms.</p>
   <div class="contact-grid">
-    <a href="mailto:alimanwar409@gmail.com" class="contact-card">
+    <a href="/cdn-cgi/l/email-protection#73121f1a1e121d04120147434a33141e121a1f5d101c1e" class="contact-card">
       <div class="contact-icon">✉️</div>
       <div>
         <div class="contact-label">Email</div>
-        <div class="contact-value">alimanwar409@gmail.com</div>
+        <div class="contact-value"><span class="__cf_email__" data-cfemail="89e8e5e0e4e8e7fee8fbbdb9b0c9eee4e8e0e5a7eae6e4">[email&#160;protected]</span></div>
       </div>
     </a>
     <a href="tel:+923021784064" class="contact-card">
@@ -512,13 +585,13 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const posts = [
   {
     cat: "University Life",
     title: "My First Experience at University: Challenges, Growth & Learning",
     date: "April 04, 2026",
-    img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=900&q=80",
+    img: "https://images.unsplash.com/photo-1562774053-701939374585?w=900&q=80",
     body: `
       <p>After passing my intermediate examinations with 72%, I aspired to study at the University of Engineering and Technology — one of the most prestigious engineering institutions in Pakistan. I chose an engineering program because UET has a strong reputation for producing skilled engineers who go on to shape the country's technological landscape.</p>
       <h3>The ECAT Journey</h3>
@@ -601,6 +674,96 @@ const posts = [
       <p>Being far from the city turns out to have an unlikely advantage: fewer distractions. When there is nowhere else to go, you focus. You study. You build habits. You get to know your peers more deeply because they are the ones around you. The campus creates a kind of focused bubble that is actually really good for academic and personal growth.</p>
       <p>UET Faisalabad may not have been my first choice. But it has shaped me in ways that a more comfortable, convenient campus might not have. And for that, I am genuinely glad I ended up here.</p>
     `
+  },
+  {
+    cat: "Semester 2",
+    title: "Second Semester Begins: A Fresh Start with Higher Stakes",
+    date: "January 20, 2026",
+    img: "https://images.unsplash.com/photo-1588072432836-e10032774350?w=900&q=80",
+    body: `
+      <p>After a two-week winter break following my first semester, returning to UET Faisalabad for the second semester felt different. I was no longer the confused fresher who arrived with a suitcase and wide eyes. I knew the campus, I knew the hostel routine, and I knew what was expected of me — and that made the stakes feel higher.</p>
+      <h3>New Subjects, New Challenges</h3>
+      <p>The second semester brought an entirely new set of courses. The syllabus was more demanding, building on foundations laid in semester one. Subjects like data structures, circuits, and mathematics required a level of focus that I had to deliberately build. Gone were the days of figuring out how university works — now it was purely about performing.</p>
+      <h3>Lessons Carried Forward</h3>
+      <p>But I was not starting from zero. The habits I had built — group study, consistent revision, asking professors questions — all paid off from day one. I felt more settled, more confident in talking to faculty, and more strategic in how I spent my time.</p>
+      <h3>A Different Energy on Campus</h3>
+      <p>There was also a noticeable shift in the atmosphere among students. Second-semester students carry a quiet confidence that freshers don't. We had survived the first round. And that shared experience created a stronger sense of community in the hostel, in the labs, and in the classrooms. Semester two was where university life truly began to feel like mine.</p>
+    `
+  },
+  {
+    cat: "Online Classes",
+    title: "When War Moved Our Classroom Online: Studying Through Global Uncertainty",
+    date: "February 10, 2026",
+    img: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=900&q=80",
+    body: `
+      <p>None of us expected a geopolitical conflict thousands of kilometres away to affect our daily schedule in Faisalabad. But as tensions in the Iran-Israel conflict escalated, the ripple effects reached our campus. Our university, like many others in Pakistan, made the precautionary decision to shift to online classes for a period during the second semester.</p>
+      <h3>The Sudden Shift</h3>
+      <p>The transition was abrupt. One day we were in lecture halls; within days, we were attending classes through screens. For students living in the hostel, this meant converting our rooms into makeshift study spaces — managing internet connectivity, finding quiet corners, and maintaining focus without the structure of a physical classroom.</p>
+      <h3>The Challenges of Online Learning</h3>
+      <p>Online classes revealed a new set of difficulties. Network issues during important lectures, the temptation to multitask, and the absence of face-to-face interaction with professors all made learning harder. Practical subjects suffered the most — there is no substitute for hands-on lab work when you're studying engineering.</p>
+      <h3>Finding the Silver Lining</h3>
+      <p>Despite the challenges, the online period taught us self-discipline. Without a professor physically present, the responsibility for learning shifted entirely to us. Some students thrived; others struggled. I learned to treat online sessions with the same seriousness as physical ones — camera on, notes open, distractions minimised. It was uncomfortable, but it made me a more independent learner.</p>
+    `
+  },
+  {
+    cat: "Ramadan & Eid",
+    title: "Ramadan in the Hostel: Sehri, Iftaar, and Brotherhood",
+    date: "March 01, 2026",
+    img: "https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=900&q=80",
+    body: `
+      <p>Ramadan arrived during my second semester, and for the first time in my life, I was observing the holy month away from home. No mother preparing sehri, no family gathered around the table at iftaar. Just the hostel, my roommates, and a completely new experience of Ramadan.</p>
+      <h3>Sehri Before Dawn</h3>
+      <p>Waking up before Fajr in the hostel was its own ritual. Some nights we barely slept — studying until late, then setting alarms to eat before the fast began. The hostel mess tried to accommodate sehri timings, though the food remained as average as ever. What made it special was not the food but the company — a group of students, bleary-eyed, sharing a meal and joking about upcoming exams in the same breath.</p>
+      <h3>Iftaar as a Community</h3>
+      <p>Iftaar in the hostel became one of my favourite parts of Ramadan. Students pooled resources, brought food from outside, and broke fast together. The sense of community in those moments was unlike anything the academic calendar produces. For a few minutes every evening, everyone paused — no assignments, no deadlines — just the warmth of shared faith and shared company.</p>
+      <h3>Balancing Fasting and Academics</h3>
+      <p>Studying while fasting is a real test of endurance. Energy dips in the afternoon made concentration difficult. I learned to schedule heavy study sessions for the post-iftaar hours, when focus returned. It was a month of physical challenge and spiritual reflection — and it made me more grateful for every ordinary day.</p>
+    `
+  },
+  {
+    cat: "Eid",
+    title: "Going Home for Eid: The Trip That Recharged Everything",
+    date: "March 10, 2026",
+    img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=900&q=80",
+    body: `
+      <p>When the Eid holidays were announced, the hostel transformed overnight. Students packed bags, called families, and counted down hours. For many of us, it had been weeks — sometimes months — since we had been home. The excitement was impossible to contain.</p>
+      <h3>The Journey Back to Lahore</h3>
+      <p>The ride from Faisalabad to Lahore felt like unwinding months of tension in a few hours. As familiar streets came into view, something in me relaxed that I hadn't even realised was tense. Home has a way of doing that — reminding you of who you are beneath the student, the hostellite, the exam-taker.</p>
+      <h3>Eid Morning</h3>
+      <p>Waking up at home on Eid morning, hearing family around, smelling proper home-cooked food — it was a stark and beautiful contrast to hostel life. I realised how much I had been pushing through without pause. Eid gave me permission to stop, to celebrate, to reconnect with the people who make the hard work worth it.</p>
+      <h3>Returning with Renewed Purpose</h3>
+      <p>The trip home was short, but its impact lasted well beyond the holidays. I returned to campus feeling recharged — mentally and emotionally reset. Distance has a way of reminding you of what matters. And that clarity made the second half of semester two feel more purposeful than ever.</p>
+    `
+  },
+  {
+    cat: "Midterms S2",
+    title: "Second Semester Midterms: Harder Questions, Better Answers",
+    date: "March 25, 2026",
+    img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=900&q=80",
+    body: `
+      <p>The second semester midterm exams arrived with noticeably more weight than semester one. The subjects were more complex, the questions more layered, and the expectations higher. But something had changed in me since those first nervous exams — I knew what I was doing this time.</p>
+      <h3>A More Demanding Syllabus</h3>
+      <p>Subjects in the second semester required deeper conceptual understanding rather than memorisation. Engineering mathematics, data structures, and circuit analysis all demanded that I not just recall information, but apply it to problems I hadn't seen before. The shift from knowing to thinking was significant.</p>
+      <h3>What I Did Differently</h3>
+      <p>This time, I started revision earlier. I used past papers to understand the pattern of questions. I focused on weak areas rather than comfortable ones. And I continued with group study — but more structured, with specific topics assigned to each session rather than free-form discussion. The approach was deliberate, and it showed in the results.</p>
+      <h3>The After-Exam Feeling</h3>
+      <p>Walking out of the midterm hall in semester two felt different from semester one. Less panic, more quiet confidence. Not because the papers were easy, but because I had prepared well. That feeling — of knowing you gave it your best — is something I want to carry into every exam from here onward.</p>
+    `
+  },
+  {
+    cat: "Student Life",
+    title: "Balancing It All: Studies, Hostel, and Mental Health in Semester 2",
+    date: "April 01, 2026",
+    img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=80",
+    body: `
+      <p>By the time semester two was fully underway, the novelty of university life had worn off. The excitement of being a fresher had faded, replaced by the steady, sometimes exhausting rhythm of real academic life. And with that came a question I hadn't expected to ask so soon: how do I sustain this?</p>
+      <h3>The Weight of Routine</h3>
+      <p>Hostel life, online classes, Ramadan fasting, midterms, and the pressure to perform — all of it layered on top of each other. There were days when motivation was hard to find. Days when the hostel felt small and the distance from home felt large. I think most university students experience this, even if few talk about it openly.</p>
+      <h3>What Actually Helped</h3>
+      <p>A few things made a real difference. Maintaining a loose daily schedule — even without enforcing it perfectly — gave my days structure. Staying connected with friends and family through calls helped with the emotional side of hostel life. Physical activity, even a short walk around campus, cleared my head on heavy days. And allowing myself rest without guilt was something I had to consciously learn.</p>
+      <h3>The Bigger Lesson</h3>
+      <p>Semester two taught me that endurance is not about never feeling tired. It is about finding small ways to recover so you can keep going. University is a long road, and the students who finish it are not necessarily the most brilliant — they are the ones who learned how to pace themselves. That is the lesson I am still learning, one week at a time.</p>
+    `
   }
 ];
 
@@ -627,14 +790,4 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 100) current = s.id;
-  });
-  navLinks.forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-  });
-});
-</script>
-</body>
-</html>
+  
